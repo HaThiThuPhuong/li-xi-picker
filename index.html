@@ -4,8 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bốc Lì Xì</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .bao-lixi {
+            display: inline-block;
+            width: 100px;
+            height: 150px;
+            margin: 10px;
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            line-height: 150px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .bao-lixi:hover {
+            background-color: #dc3545;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <script src="lixi.js"></script>
+    <div class="container">
+        <h1>Bốc Lì Xì</h1>
+        <p>Chọn một bao lì xì để nhận mệnh giá!</p>
+        <div id="baoContainer">
+            <div class="bao-lixi" onclick="bocLixi(1)">1</div>
+            <div class="bao-lixi" onclick="bocLixi(2)">2</div>
+            <div class="bao-lixi" onclick="bocLixi(3)">3</div>
+            <div class="bao-lixi" onclick="bocLixi(4)">4</div>
+            <div class="bao-lixi" onclick="bocLixi(5)">5</div>
+            <div class="bao-lixi" onclick="bocLixi(6)">6</div>
+            <div class="bao-lixi" onclick="bocLixi(7)">7</div>
+            <div class="bao-lixi" onclick="bocLixi(8)">8</div>
+            <div class="bao-lixi" onclick="bocLixi(9)">9</div>
+            <div class="bao-lixi" onclick="bocLixi(10)">10</div>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function bocLixi(index) {
+            const mentaGias = [1000, 5000, 10000, 20000, 50000, 100000, 200000, 300000, 400000, 500000];
+            const randomIndex = Math.floor(Math.random() * mentaGias.length);
+            const mentaGia = mentaGias[randomIndex];
+            
+            // Hiển thị mệnh giá
+            document.getElementById("result").innerText = `Mệnh giá của bao lì xì số ${index}: ${mentaGia} VND`;
+            
+            // Vô hiệu hóa tất cả bao lì xì sau khi đã chọn
+            const baoContainer = document.getElementById("baoContainer");
+            const baoLixi = baoContainer.getElementsByClassName("bao-lixi");
+            for (let i = 0; i < baoLixi.length; i++) {
+                baoLixi[i].style.pointerEvents = 'none';  // Không cho phép nhấp vào nữa
+            }
+        }
+    </script>
 </body>
 </html>
